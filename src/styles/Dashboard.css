@@ -1,0 +1,86 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start; 
+  padding: 20px;
+  background-color: #333;
+}
+
+.slider-toggle {
+  cursor: pointer;
+  font-size: 14px; 
+  color: #fff;
+  background-color: #333;
+  border: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+.heading {
+  font-size: 36px; 
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.slider-content {
+  width: 100px;
+  height: 40%;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  transition: left 0.3s ease-out;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.slider-content.open {
+  left: 0;
+}
+
+.slider-card {
+  padding: 20px;
+}
+
+.slider-content nav {
+  padding: 20px;
+}
+
+.slider-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-content ul li {
+  margin-bottom: 15px;
+}
+
+.back-link {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.back-link a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}

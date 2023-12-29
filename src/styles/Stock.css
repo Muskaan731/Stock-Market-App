@@ -1,0 +1,26 @@
+.stock-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .stock-card {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .stock-card:hover {
+    background-color: #ddd;
+  }
+  
+  .stock-details-panel {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
