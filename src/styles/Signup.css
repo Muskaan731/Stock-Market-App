@@ -6,10 +6,12 @@
   }
   
   .signup-form {
-    width: 300px;
+    width: 250px;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 25px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
   
@@ -23,7 +25,7 @@
   }
   
   input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -58,3 +60,7 @@
     text-decoration: underline;
   }
   
+  .success-message{
+    font-size: large ;
+    background-color: #ccc;
+  }

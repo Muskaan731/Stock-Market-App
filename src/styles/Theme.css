@@ -1,0 +1,39 @@
+/* styles.css */
+
+/* Light theme styles */
+body {
+    background-color: #f8f8f8;
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .stock-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .stock-card:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dark-theme body {
+    /* Dark theme styles */
+    background-color: #222222;
+    color: #ffffff;
+  }
+  
+  .dark-theme .stock-card {
+    background-color: black ;
+    border: 1px solid #555555;
+    color: skyblue;
+  }
+  
+  .dark-theme .stock-card:hover {
+    background-color: #444444;
+  }
+  

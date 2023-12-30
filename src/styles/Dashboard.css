@@ -6,23 +6,29 @@
 
 .header {
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
+  align-items: center;
   padding: 20px;
   background-color: #333;
 }
 
 .slider-toggle {
   cursor: pointer;
-  font-size: 14px; 
+  font-size: 16px;
   color: #fff;
   background-color: #333;
   border: none;
-  padding: 5px;
-  margin: 5px;
+  padding: 10px;
+  margin: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.slider-toggle:hover {
+  background-color: #555;
 }
 
 .heading {
-  font-size: 36px; 
+  font-size: 36px;
   color: #333;
   text-align: center;
   margin: 20px 0;
@@ -33,27 +39,39 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  padding: 20px;
+  padding: 15px;
 }
 
 .slider-content {
-  width: 100px;
-  height: 40%;
+  width: 120px;
+  height: 30%;
   position: fixed;
   top: 0;
-  left: -300px;
+  left: -150px;
   transition: left 0.3s ease-out;
   background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
+.inline-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: large;
+}
+
+
+a{
+  text-decoration:none;
+  color: black;
+  font-size: large;
+}
 .slider-content.open {
   left: 0;
 }
 
 .slider-card {
-  padding: 20px;
+  padding: 10px;
 }
 
 .slider-content nav {
@@ -64,6 +82,7 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  margin-left: -15px;
 }
 
 .slider-content ul li {
@@ -71,8 +90,9 @@
 }
 
 .back-link {
-  padding: 20px;
+  padding: 8px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .back-link a {
@@ -84,3 +104,5 @@
 .back-link a:hover {
   text-decoration: underline;
 }
+
+

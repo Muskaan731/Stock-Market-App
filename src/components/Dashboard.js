@@ -1,4 +1,5 @@
 // Dashboard.js
+
 import React, { useState, useEffect } from 'react';
 import '../styles/Dashboard.css';
 import '../styles/Stock.css';
@@ -6,6 +7,7 @@ import Signup from './Signup';
 import { fetchStockData, fetchStockDetail, fetchHistoricalData } from '../services/StockList';
 import StockChart from '../services/StockChart';
 import SortButton from '../services/SortButton';
+import Theme from '../services/Theme'; // Import Theme component
 
 const Dashboard = () => {
   const [isSliderOpen, setSliderOpen] = useState(false);
@@ -14,6 +16,8 @@ const Dashboard = () => {
   const [selectedStock, setSelectedStock] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('desc');
+  const [isDarkMode, setDarkMode] = useState(false);
+  const [showSearchOption, setShowSearchOption] = useState(true); // Default to true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,8 +58,18 @@ const Dashboard = () => {
     setSortOrder(newSortOrder);
   };
 
+  const toggleTheme = () => {
+    setDarkMode(!isDarkMode);
+  };
+
+  const toggleSearchOption = () => {
+    setShowSearchOption(!showSearchOption);
+  };
+
+  const sliderHeight = showSearchOption ? 180 : 100;
+
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${isDarkMode ? 'dark-theme' : ''}`} style={{ height: `${sliderHeight}px` }}>
       <button className="slider-toggle" onClick={toggleSlider}>
         ☰
       </button>
@@ -64,9 +78,18 @@ const Dashboard = () => {
         <div className="slider-card">
           <nav>
             <ul>
-              <li><a href="#settings">Settings</a></li>
+              <li className="inline-checkbox">
+                <input
+                  type="checkbox"
+                  id="searchOption"
+                  checked={showSearchOption}
+                  onChange={toggleSearchOption}
+                />
+                <label htmlFor="searchOption">Search</label>
+              </li>
+
               <li onClick={toggleSignup}><a href="#signup">Signup</a></li>
-              <li><a href="#theme">Theme</a></li>
+              <li onClick={toggleTheme}><a href="#theme">Theme</a></li>
             </ul>
           </nav>
           <div className="back-link" onClick={toggleSlider}>
@@ -80,14 +103,16 @@ const Dashboard = () => {
       ) : (
         <div>
           <h1>Stock Market</h1>
-          <div>
-            <input
-              type="text"
-              placeholder="Search stocks..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          {showSearchOption && (
+            <div>
+              <input
+                type="text"
+                placeholder="Search stocks..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          )}
           <SortButton onClick={handleSort} sortOrder={sortOrder} />
           <div className="stock-cards">
             {stockData
