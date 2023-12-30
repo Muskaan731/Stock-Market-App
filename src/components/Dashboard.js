@@ -1,9 +1,11 @@
+// Dashboard.js
 import React, { useState, useEffect } from 'react';
 import '../styles/Dashboard.css';
 import '../styles/Stock.css';
 import Signup from './Signup';
-import { fetchStockData, fetchStockDetail ,fetchHistoricalData } from '../services/StockList';
+import { fetchStockData, fetchStockDetail, fetchHistoricalData } from '../services/StockList';
 import StockChart from '../services/StockChart';
+import SortButton from '../services/SortButton';
 
 const Dashboard = () => {
   const [isSliderOpen, setSliderOpen] = useState(false);
@@ -11,6 +13,7 @@ const Dashboard = () => {
   const [stockData, setStockData] = useState([]);
   const [selectedStock, setSelectedStock] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +41,17 @@ const Dashboard = () => {
   const openStockDetails = async (symbol) => {
     try {
       const details = await fetchStockDetail(symbol);
-      const historicalData = await fetchHistoricalData(details.symbol); // Use symbol instead of name
+      const historicalData = await fetchHistoricalData(details.symbol);
       setSelectedStock({ ...details, historicalData });
     } catch (error) {
       console.error('Error fetching stock details:', error);
-      setSelectedStock(null); // Reset selectedStock on error
+      setSelectedStock(null);
     }
+  };
+
+  const handleSort = () => {
+    const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    setSortOrder(newSortOrder);
   };
 
   return (
@@ -80,9 +88,11 @@ const Dashboard = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+          <SortButton onClick={handleSort} sortOrder={sortOrder} />
           <div className="stock-cards">
             {stockData
               .filter((stock) => stock.name.toLowerCase().includes(searchTerm.toLowerCase()))
+              .sort((a, b) => (sortOrder === 'asc' ? a.latestPrice - b.latestPrice : b.latestPrice - a.latestPrice))
               .map((stock) => (
                 <div key={stock.symbol} className="stock-card">
                   <p onClick={() => openStockDetails(stock.symbol)}>{stock.name}</p>
